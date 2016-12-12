@@ -3,35 +3,64 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
 
 import { Controller } from 'cerebral'
 import { Container } from 'cerebral/react'
-// import Devtools from 'cerebral/devtools'
+import Devtools from 'cerebral/devtools'
+import {connect} from 'cerebral/react'
+import {input, state, set} from 'cerebral/operators'
 
 const controller = Controller({
-  // devtools: Devtools(),
+  devtools: Devtools({
+    remoteDebugger: '192.168.0.5:8585'
+  }),
   state: {
-    title: 'Title'
+    currentDate: (new Date()).toISOString()
+  },
+  signals: {
+    buttonClicked: [
+      set(state`currentDate`, input`newDate`)
+    ]
   }
 })
+
+
+const Title = connect(
+{
+  currentDate: 'currentDate'
+},
+{
+  buttonClicked: 'buttonClicked'
+},
+  function Title (props) {
+    return (
+      <View>
+        <Text>
+          {props.currentDate}
+        </Text>
+        <Button
+          onPress={() => props.buttonClicked({
+            newDate: (new Date()).toISOString()
+          })}
+          title="Get current date!"
+          color="#841584"
+          accessibilityLabel="Click on this button to change state"
+        />
+      </View>
+    )
+  }
+)
+
 
 export default class reactNativeCerebral2 extends Component {
   render() {
     return (
       <Container controller={controller}>
         <View style={styles.container}>
-          <Text style={styles.welcome}>
-            Welcome to React Native!
-          </Text>
-          <Text style={styles.instructions}>
-            To get started, edit index.android.js
-          </Text>
-          <Text style={styles.instructions}>
-            Double tap R on your keyboard to reload,{'\n'}
-            Shake or press menu button for dev menu
-          </Text>
+          <Title />
         </View>
       </Container>
     );

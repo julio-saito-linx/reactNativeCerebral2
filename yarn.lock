@@ -929,11 +929,11 @@ center-align@^0.1.1:
     lazy-cache "^1.0.3"
 
 cerebral@next:
-  version "2.0.0-0-alpha.a4b3173e"
-  resolved "https://registry.yarnpkg.com/cerebral/-/cerebral-2.0.0-0-alpha.a4b3173e.tgz#0e9b9c0743793772ffa7e523deaa38d26745369a"
+  version "2.0.0-0-alpha.ec8ba3a1"
+  resolved "https://registry.yarnpkg.com/cerebral/-/cerebral-2.0.0-0-alpha.ec8ba3a1.tgz#443e0796b5f5f0867cdcf2ff43838135f5cb229e"
   dependencies:
     eventemitter3 "^2.0.2"
-    function-tree "^0.5.0-0-alpha.a4b3173e"
+    function-tree "^0.5.0-0-alpha.ec8ba3a1"
 
 chalk@^1.0.0, chalk@^1.1.0, chalk@^1.1.1, chalk@^1.1.3:
   version "1.1.3"
@@ -1510,16 +1510,9 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
 
-function-tree@^0.5.0-0-alpha.a4b3173e:
-  version "0.5.0-alpha.2-alpha.ed1e4568"
-  resolved "https://registry.yarnpkg.com/function-tree/-/function-tree-0.5.0-alpha.2-alpha.ed1e4568.tgz#482bf6ae09bff1a98cd239f3477dc7d897454fbf"
-  dependencies:
-    chalk "^1.1.3"
-    eventemitter3 "^2.0.2"
-
-function-tree@next:
-  version "0.5.0-0-alpha.a4b3173e"
-  resolved "https://registry.yarnpkg.com/function-tree/-/function-tree-0.5.0-0-alpha.a4b3173e.tgz#919f01d5425fb0e860e2f6ade8abadec0b3d7ca6"
+function-tree@^0.5.0-0-alpha.ec8ba3a1, function-tree@next:
+  version "0.5.0-0-alpha.ec8ba3a1"
+  resolved "https://registry.yarnpkg.com/function-tree/-/function-tree-0.5.0-0-alpha.ec8ba3a1.tgz#7bad7f1ed8455653edad65c3bc369674e74e7d19"
   dependencies:
     chalk "^1.1.3"
     eventemitter3 "^2.0.2"
