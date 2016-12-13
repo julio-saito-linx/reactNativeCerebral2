@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Container } from 'cerebral/react'
-import MainComponent from './components/MainComponent'
+import Main from './components/Main'
 import controller from './controller'
 
 export default class MainContainer extends Component {
   render () {
     return (
       <Container controller={controller}>
-        <MainComponent />
+        <Main />
       </Container>
     )
   }

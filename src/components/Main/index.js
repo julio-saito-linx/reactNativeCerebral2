@@ -2,11 +2,14 @@ import React from 'react'
 import {
   Text,
   View,
-  Button,
-  StyleSheet
+  Button
+  // NavigationExperimental,
+  // ScrollView
 } from 'react-native'
 import {connect} from 'cerebral/react'
-import DateComponent from './DateComponent'
+import ColorBlocks from '../ColorBlocks'
+import ShowDate from '../ShowDate'
+import styles from './styles'
 
 export default connect({
   title: 'title',
@@ -29,27 +32,15 @@ export default connect({
           accessibilityLabel='Click on this button to change state'
         />
 
-        <DateComponent />
+        <ColorBlocks />
+
+        <ShowDate />
       </View>
     )
   }
 )
 
-function getTitle({title, titleCounter}) {
+function getTitle ({titleCounter}) {
   const times = titleCounter > 1 ? 'times' : 'time'
   return `You have pressed ${titleCounter} ${times}`
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
-  },
-  title: {
-    fontSize: 24,
-    textAlign: 'center',
-    margin: 10
-  }
-})

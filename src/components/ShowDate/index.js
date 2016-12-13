@@ -2,10 +2,10 @@ import React from 'react'
 import {
   Text,
   View,
-  Button,
-  StyleSheet
+  Button
 } from 'react-native'
 import {connect} from 'cerebral/react'
+import styles from './styles'
 
 export default connect({
   currentDate: 'currentDate'
@@ -36,14 +36,3 @@ export default connect({
     )
   }
 )
-
-const styles = StyleSheet.create({
-  button: {
-    marginTop: 40
-  },
-  date: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 20
-  }
-})
