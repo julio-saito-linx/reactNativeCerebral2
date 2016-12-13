@@ -1,6 +1,5 @@
-import { Controller } from 'cerebral'
+import {Controller} from 'cerebral'
 import Devtools from 'cerebral/devtools'
-import {input, state, set} from 'cerebral/operators'
 
 const controller = Controller({
   devtools: Devtools({
@@ -8,42 +7,72 @@ const controller = Controller({
   }),
 
   state: {
-    title: 'Initial Title',
-    titleCounter: 1,
-    currentDate: (new Date()).toLocaleTimeString(),
-    currentPage: 'page1',
     blocks: {
-      1: {counter: 1},
-      2: {counter: 1},
-      3: {counter: 1},
-      4: {counter: 1},
-      5: {counter: 1},
-      6: {counter: 1}
+      1: {
+        1: {counter: 0},
+        2: {counter: 0},
+        3: {counter: 0},
+        4: {counter: 0},
+        5: {counter: 0},
+        6: {counter: 0}
+      },
+      2: {
+        1: {counter: 0},
+        2: {counter: 0},
+        3: {counter: 0},
+        4: {counter: 0},
+        5: {counter: 0},
+        6: {counter: 0}
+      },
+      3: {
+        1: {counter: 0},
+        2: {counter: 0},
+        3: {counter: 0},
+        4: {counter: 0},
+        5: {counter: 0},
+        6: {counter: 0}
+      },
+      4: {
+        1: {counter: 0},
+        2: {counter: 0},
+        3: {counter: 0},
+        4: {counter: 0},
+        5: {counter: 0},
+        6: {counter: 0}
+      },
+      5: {
+        1: {counter: 0},
+        2: {counter: 0},
+        3: {counter: 0},
+        4: {counter: 0},
+        5: {counter: 0},
+        6: {counter: 0}
+      }
     }
   },
 
   signals: {
-    buttonClicked: [
-      set(state`currentDate`, input`newDate`)
+    bootstrap: [
+      ({state, input}) => {
+        const rows = input.rows
+        const cols = input.cols
+        const blockRowsAndCols = new Array(rows).fill().reduce((rowsObj, _, i) => {
+          rowsObj[i] = new Array(cols).fill().reduce((colsObj, _, j) => {
+            colsObj[j] = {counter: 0}
+            return colsObj
+          }, {})
+          return rowsObj
+        }, {})
+        state.set('blocks', blockRowsAndCols)
+      }
     ],
-    buttonChangeTitleClicked: [
-      ({state}) => state.set('titleCounter', state.get('titleCounter') + 1),
-      set(state`title`, input`newTitle`)
-    ],
-
-    // routing
-    page1Routed: set(state`currentPage`, 'page1'),
-    page2Routed: set(state`currentPage`, 'page2'),
-
-    // blocks
     blockPressed: [
       ({state, input}) => {
-        let counterPath = `blocks.${input.id}.counter`
+        let counterPath = `blocks.${input.rowId}.${input.colId}.counter`
         state.set(counterPath, state.get(counterPath) + 1)
       }
     ]
   }
-
 })
 
 export default controller

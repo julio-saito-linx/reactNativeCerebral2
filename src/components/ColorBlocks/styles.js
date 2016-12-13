@@ -3,12 +3,21 @@ import {
 } from 'react-native'
 
 export default StyleSheet.create({
-  blocksContainer: {
+  blocksRowsContainer: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
-    flexGrow: 1,
+    alignItems: 'flex-start',
+    // flexGrow: 1,
+    margin: 0
+  },
+
+  blocksContainer: {
+    // flex: 1,
+    flexDirection: 'row',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // flexGrow: 1,
     margin: 0
   }
 })

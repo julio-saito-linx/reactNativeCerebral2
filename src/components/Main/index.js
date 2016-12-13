@@ -1,46 +1,26 @@
 import React from 'react'
 import {
-  Text,
-  View,
-  Button
+  View
   // NavigationExperimental,
   // ScrollView
 } from 'react-native'
-import {connect} from 'cerebral/react'
 import ColorBlocks from '../ColorBlocks'
-import ShowDate from '../ShowDate'
 import styles from './styles'
+import {connect} from 'cerebral/react'
 
-export default connect({
-  title: 'title',
-  titleCounter: 'titleCounter'
-}, {
-  buttonChangeTitleClicked: 'buttonChangeTitleClicked'
+export default connect({}, {
+  bootstrap: 'bootstrap'
 },
-  function MainComponent (props) {
+  (props) => {
+    const ROWS = 7
+    const COLS = 7
+
+    props.bootstrap({rows: ROWS, cols: COLS})
+
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>
-          {props.title}
-        </Text>
-        <Button
-          onPress={() => props.buttonChangeTitleClicked({
-            newTitle: getTitle(props)
-          })}
-          title='Press "Change title" button'
-          color='#841584'
-          accessibilityLabel='Click on this button to change state'
-        />
-
-        <ColorBlocks />
-
-        <ShowDate />
+        <ColorBlocks rows={ROWS} cols={COLS} />
       </View>
     )
-  }
-)
 
-function getTitle ({titleCounter}) {
-  const times = titleCounter > 1 ? 'times' : 'time'
-  return `You have pressed ${titleCounter} ${times}`
-}
+  })

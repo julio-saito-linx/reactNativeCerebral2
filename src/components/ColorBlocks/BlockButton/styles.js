@@ -5,14 +5,13 @@ import {
 export default StyleSheet.create({
   buttonContainer: {
     flexGrow: 1,
-    height: 80,
     margin: 0,
     borderStyle: 'solid',
+    height: 50,
     borderWidth: 1
   },
   button: {
     flexGrow: 1,
-    height: 80,
     backgroundColor: 'gray'
   }
 })
