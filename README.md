@@ -21,6 +21,11 @@ yarn
 
 ```sh
 ./CerebralDebugger
+
+# Android
 react-native run-android
 adb reverse tcp:8081 tcp:8081 && npm start -- --reset-cache --verbose
+
+# IOS
+react-native run-ios
 ```
