@@ -2,53 +2,13 @@ import {Controller} from 'cerebral'
 import Devtools from 'cerebral/devtools'
 
 const controller = Controller({
-  devtools: Devtools({
+  devtools: process.env.NODE_ENV === 'production' ? null : Devtools({
+    // If running standalone debugger
     remoteDebugger: '192.168.0.5:8585'
   }),
 
   state: {
-    blocks: {
-      1: {
-        1: {counter: 0},
-        2: {counter: 0},
-        3: {counter: 0},
-        4: {counter: 0},
-        5: {counter: 0},
-        6: {counter: 0}
-      },
-      2: {
-        1: {counter: 0},
-        2: {counter: 0},
-        3: {counter: 0},
-        4: {counter: 0},
-        5: {counter: 0},
-        6: {counter: 0}
-      },
-      3: {
-        1: {counter: 0},
-        2: {counter: 0},
-        3: {counter: 0},
-        4: {counter: 0},
-        5: {counter: 0},
-        6: {counter: 0}
-      },
-      4: {
-        1: {counter: 0},
-        2: {counter: 0},
-        3: {counter: 0},
-        4: {counter: 0},
-        5: {counter: 0},
-        6: {counter: 0}
-      },
-      5: {
-        1: {counter: 0},
-        2: {counter: 0},
-        3: {counter: 0},
-        4: {counter: 0},
-        5: {counter: 0},
-        6: {counter: 0}
-      }
-    }
+    blocks: null
   },
 
   signals: {
