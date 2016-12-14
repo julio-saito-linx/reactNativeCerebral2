@@ -11,7 +11,11 @@ import styles from './styles'
 import {connect} from 'cerebral/react'
 
 export default connect({}, {
-  bootstrap: 'bootstrap'
+  bootstrap: 'bootstrap',
+  leftButtonPressed: 'leftButtonPressed',
+  rightButtonPressed: 'rightButtonPressed',
+  upButtonPressed: 'upButtonPressed',
+  downButtonPressed: 'downButtonPressed'
 },
   (props) => {
     const ROWS = 6
@@ -23,16 +27,16 @@ export default connect({}, {
 
         <View style={styles.buttons}>
           <View style={styles.button}>
-            <Button title='left' onPress={() => {}} />
+            <Button title='left' onPress={() => props.leftButtonPressed()} />
           </View>
           <View style={styles.button}>
-            <Button title='rigth' onPress={() => {}} />
+            <Button title='rigth' onPress={() => props.rightButtonPressed()} />
           </View>
           <View style={styles.button}>
-            <Button title='up' onPress={() => {}} />
+            <Button title='up' onPress={() => props.upButtonPressed()} />
           </View>
           <View style={styles.button}>
-            <Button title='down' onPress={() => {}} />
+            <Button title='down' onPress={() => props.downButtonPressed()} />
           </View>
         </View>
 
