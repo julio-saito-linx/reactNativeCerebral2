@@ -6,9 +6,18 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    paddingTop: 50,
-    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
+  },
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  button: {
+    marginRight: 10
   }
 })

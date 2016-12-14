@@ -3,6 +3,7 @@ import {
   View
   // NavigationExperimental,
   // ScrollView
+  , Button
 } from 'react-native'
 import ColorBlocks from '../ColorBlocks'
 import ShowBlocks from '../ShowBlocks'
@@ -15,14 +16,27 @@ export default connect({}, {
   (props) => {
     const ROWS = 6
     const COLS = 6
-
     props.bootstrap({rows: ROWS, cols: COLS})
-
     return (
       <View style={styles.container}>
         <ColorBlocks rows={ROWS} cols={COLS} />
+
+        <View style={styles.buttons}>
+          <View style={styles.button}>
+            <Button title='left' onPress={() => {}} />
+          </View>
+          <View style={styles.button}>
+            <Button title='rigth' onPress={() => {}} />
+          </View>
+          <View style={styles.button}>
+            <Button title='up' onPress={() => {}} />
+          </View>
+          <View style={styles.button}>
+            <Button title='down' onPress={() => {}} />
+          </View>
+        </View>
+
         <ShowBlocks rows={ROWS} cols={COLS} />
       </View>
     )
-
   })
