@@ -22,7 +22,7 @@ function createRows ({rows, cols}) {
 
 function createColumns (rowId, cols) {
   let result = []
-  for (let colId = 0; colId < cols * 3; colId++) {
+  for (let colId = 0; colId < cols * 5; colId++) {
     result.push((
       <Block
         key={colId}
