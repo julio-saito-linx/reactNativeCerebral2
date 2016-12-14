@@ -7,20 +7,10 @@ import {
 } from 'react-native'
 import styles from './styles'
 
-function getColor (counter) {
-  switch (counter % 4) {
-    case 0:
-      return {backgroundColor: '#F5D9C3'}
-    case 1:
-      return {backgroundColor: '#D2ACB9'}
-    case 2:
-      return {backgroundColor: '#B4707F'}
-    case 3:
-      return {backgroundColor: '#75617C'}
-    case 4:
-      return {backgroundColor: '#412E34'}
-    default:
-      return {backgroundColor: 'white'}
+function getColor ({counter, colorsList, colorsListIndex}) {
+  const listOfColors = colorsList[colorsListIndex]
+  return {
+    backgroundColor: listOfColors[counter % listOfColors.length]
   }
 }
 
@@ -45,7 +35,7 @@ export default function BlockButton (props) {
             colId: props.colId
           })
         }}
-        style={[styles.button, getColor(props.counter), getSize(props.gridSize)]}>
+        style={[styles.button, getColor(props), getSize(props.gridSize)]}>
         <Text />
       </TouchableHighlight>
     </View>

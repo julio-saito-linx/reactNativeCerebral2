@@ -28,6 +28,8 @@ function createColumns (rowId, props) {
       <Block
         key={colId}
         gridSize={props.gridSize}
+        colorsList={props.colorsList}
+        colorsListIndex={props.colorsListIndex}
         counter={props.blocks[rowId % props.gridSize][colId % props.gridSize].counter}
       />
     ))
@@ -37,7 +39,9 @@ function createColumns (rowId, props) {
 
 export default connect({
   blocks: 'blocks.**',
-  gridSize: 'gridSize'
+  gridSize: 'gridSize',
+  colorsList: 'colorsList',
+  colorsListIndex: 'colorsListIndex'
 }, {},
   function ShowBlocks (props) {
     return (

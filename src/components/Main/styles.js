@@ -19,7 +19,7 @@ export default StyleSheet.create({
   button: {
     marginRight: 10
   },
-  buttonGridSize: {
+  buttonWithSpace: {
     marginLeft: 20
   }
 })

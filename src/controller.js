@@ -1,5 +1,19 @@
 import {Controller} from 'cerebral'
 import Devtools from 'cerebral/devtools'
+import {set, state, input} from 'cerebral/operators'
+
+const createAllBlocks = ({state}) => {
+  const rows = state.get('gridSize')
+  const cols = state.get('gridSize')
+  const blockRowsAndCols = new Array(rows).fill().reduce((rowsObj, _, i) => {
+    rowsObj[i] = new Array(cols).fill().reduce((colsObj, _, j) => {
+      colsObj[j] = {counter: 0}
+      return colsObj
+    }, {})
+    return rowsObj
+  }, {})
+  return {blockRowsAndCols}
+}
 
 const controller = Controller({
   options: {strictRender: true},
@@ -26,24 +40,21 @@ const controller = Controller({
   }),
 
   state: {
+    loaded: null,
     blocks: null,
-    gridSize: 4
+    gridSize: 4,
+    colorsList: {
+      0: ['#F5D9C3', '#D2ACB9', '#B4707F', '#75617C', '#412E34'],
+      1: ['#00D9C3', '#00ACB9', '#00707F', '#00617C', '#002E34']
+    },
+    colorsListIndex: 0
   },
 
   signals: {
     bootstrap: [
-      ({state}) => {
-        const rows = state.get('gridSize')
-        const cols = state.get('gridSize')
-        const blockRowsAndCols = new Array(rows).fill().reduce((rowsObj, _, i) => {
-          rowsObj[i] = new Array(cols).fill().reduce((colsObj, _, j) => {
-            colsObj[j] = {counter: 0}
-            return colsObj
-          }, {})
-          return rowsObj
-        }, {})
-        state.set('blocks', blockRowsAndCols)
-      }
+      createAllBlocks,
+      set(state`blocks`, input`blockRowsAndCols`),
+      set(state`loaded`, true)
     ],
     blockPressed: [
       ({state, input}) => {
@@ -122,6 +133,7 @@ const controller = Controller({
       }
     ],
     gridSizePressed: [
+      set(state`loaded`, false),
       ({state}) => {
         let gridSize = state.get('gridSize')
         gridSize++
@@ -129,9 +141,21 @@ const controller = Controller({
           gridSize = 4
         }
         state.set('gridSize', gridSize)
+      },
+      createAllBlocks,
+      set(state`blocks`, input`blockRowsAndCols`),
+      set(state`loaded`, true)
+    ],
+    changeColorsPressed: [
+      ({state}) => {
+        const colorsList = state.get('colorsList')
+        const colorsListIndex = state.get('colorsListIndex')
+        const listLen = Object.keys(colorsList).length
+        state.set('colorsListIndex', (colorsListIndex + 1) % listLen)
       }
     ]
   }
 })
 
 export default controller
+
