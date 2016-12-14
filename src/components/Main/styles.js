@@ -6,8 +6,8 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    marginTop: 10,
-    marginBottom: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#333'
