@@ -27,7 +27,8 @@ function createColumns (rowId, props) {
     result.push((
       <Block
         key={colId}
-        counter={props.blocks[rowId % 6][colId % 6].counter}
+        gridSize={props.gridSize}
+        counter={props.blocks[rowId % props.gridSize][colId % props.gridSize].counter}
       />
     ))
   }
@@ -35,9 +36,10 @@ function createColumns (rowId, props) {
 }
 
 export default connect({
-  blocks: 'blocks.**'
+  blocks: 'blocks.**',
+  gridSize: 'gridSize'
 }, {},
-  (props) => {
+  function ShowBlocks (props) {
     return (
       <View style={styles.blocksRowsContainer}>
         {createRows(props)}

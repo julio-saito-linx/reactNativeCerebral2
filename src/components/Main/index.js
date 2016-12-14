@@ -10,37 +10,41 @@ import ShowBlocks from '../ShowBlocks'
 import styles from './styles'
 import {connect} from 'cerebral/react'
 
-export default connect({}, {
+export default connect({
+  gridSize: 'gridSize'
+}, {
   bootstrap: 'bootstrap',
   leftButtonPressed: 'leftButtonPressed',
   rightButtonPressed: 'rightButtonPressed',
   upButtonPressed: 'upButtonPressed',
-  downButtonPressed: 'downButtonPressed'
+  downButtonPressed: 'downButtonPressed',
+  gridSizePressed: 'gridSizePressed'
 },
-  (props) => {
-    const ROWS = 6
-    const COLS = 6
-    props.bootstrap({rows: ROWS, cols: COLS})
+  function Main (props) {
+    props.bootstrap()
     return (
       <View style={styles.container}>
-        <ColorBlocks rows={ROWS} cols={COLS} />
+        <ColorBlocks rows={props.gridSize} cols={props.gridSize} />
 
         <View style={styles.buttons}>
           <View style={styles.button}>
-            <Button title='left' onPress={() => props.leftButtonPressed()} />
+            <Button color='#777' title='◀' onPress={() => props.leftButtonPressed()} />
           </View>
           <View style={styles.button}>
-            <Button title='rigth' onPress={() => props.rightButtonPressed()} />
+            <Button color='#777' title='▶' onPress={() => props.rightButtonPressed()} />
           </View>
           <View style={styles.button}>
-            <Button title='up' onPress={() => props.upButtonPressed()} />
+            <Button color='#777' title='▲' onPress={() => props.upButtonPressed()} />
           </View>
           <View style={styles.button}>
-            <Button title='down' onPress={() => props.downButtonPressed()} />
+            <Button color='#777' title='▼' onPress={() => props.downButtonPressed()} />
+          </View>
+          <View style={styles.buttonGridSize}>
+            <Button color='#777' title={`${props.gridSize.toString()} x ${props.gridSize.toString()}`} onPress={() => props.gridSizePressed()} />
           </View>
         </View>
 
-        <ShowBlocks rows={ROWS} cols={COLS} />
+        <ShowBlocks rows={props.gridSize} cols={props.gridSize} />
       </View>
     )
   })

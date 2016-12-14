@@ -30,6 +30,7 @@ function createColumns (rowId, props) {
         rowId={rowId}
         colId={colId}
         counter={props.blocks[rowId][colId].counter}
+        gridSize={props.gridSize}
         blockPressed={props.blockPressed}
       />
     ))
@@ -38,11 +39,12 @@ function createColumns (rowId, props) {
 }
 
 export default connect({
-  blocks: 'blocks.**'
+  blocks: 'blocks.**',
+  gridSize: 'gridSize'
 }, {
   blockPressed: 'blockPressed'
 },
-  (props) => {
+  function BlockButton (props) {
     return (
       <View style={styles.blocksRowsContainer}>
         {createRows(props)}

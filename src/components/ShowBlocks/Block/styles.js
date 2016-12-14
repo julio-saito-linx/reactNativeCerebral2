@@ -6,7 +6,6 @@ export default StyleSheet.create({
   button: {
     flexGrow: 1,
     width: 10,
-    height: 10,
-    backgroundColor: 'gray'
+    height: 10
   }
 })

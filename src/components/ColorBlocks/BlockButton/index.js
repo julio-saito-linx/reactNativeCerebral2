@@ -2,9 +2,9 @@ import React from 'react'
 import {
   Text,
   View,
-  TouchableHighlight
+  TouchableHighlight,
+  Dimensions
 } from 'react-native'
-import {connect} from 'cerebral/react'
 import styles from './styles'
 
 function getColor (counter) {
@@ -24,7 +24,17 @@ function getColor (counter) {
   }
 }
 
-export default (props) => {
+function getSize (gridSize) {
+  const {width} = Dimensions.get('window')
+  const totalSize = width - 40
+  const blockSize = Math.floor((totalSize / gridSize) - (gridSize * 1.1))
+  return {
+    width: blockSize,
+    height: blockSize
+  }
+}
+
+export default function BlockButton (props) {
   return (
     <View style={styles.buttonContainer}>
       <TouchableHighlight
@@ -35,7 +45,7 @@ export default (props) => {
             colId: props.colId
           })
         }}
-        style={[styles.button, getColor(props.counter)]}>
+        style={[styles.button, getColor(props.counter), getSize(props.gridSize)]}>
         <Text />
       </TouchableHighlight>
     </View>

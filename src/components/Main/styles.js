@@ -8,16 +8,18 @@ export default StyleSheet.create({
     flexDirection: 'column',
     paddingTop: 10,
     paddingBottom: 10,
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: '#333'
   },
   buttons: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    margin: 13,
+    flexDirection: 'row'
   },
   button: {
     marginRight: 10
+  },
+  buttonGridSize: {
+    marginLeft: 20
   }
 })

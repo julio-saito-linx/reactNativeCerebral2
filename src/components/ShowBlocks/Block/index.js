@@ -1,6 +1,7 @@
 import React from 'react'
 import {
-  View
+  View,
+  Dimensions
 } from 'react-native'
 import styles from './styles'
 
@@ -21,8 +22,20 @@ function getColor (counter) {
   }
 }
 
-export default (props) => (
-  <View style={styles.buttonContainer}>
-    <View style={[styles.button, getColor(props.counter)]} />
-  </View>
-)
+function getSize (gridSize) {
+  const {width} = Dimensions.get('window')
+  const totalSize = width - 40
+  const blockSize = Math.floor((totalSize / gridSize) / 6)
+  return {
+    width: blockSize,
+    height: blockSize
+  }
+}
+
+export default function Block (props) {
+  return (
+    <View style={styles.buttonContainer}>
+      <View style={[styles.button, getColor(props.counter), getSize(props.gridSize)]} />
+    </View>
+  )
+}
