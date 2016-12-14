@@ -1,8 +1,6 @@
 import React from 'react'
 import {
-  Text,
-  View,
-  TouchableHighlight
+  View
 } from 'react-native'
 import {connect} from 'cerebral/react'
 import styles from './styles'
@@ -25,24 +23,14 @@ function getColor (counter) {
 }
 
 export default connect((props) => ({
-  counter: `blocks.${props.rowId}.${props.colId}.counter`
+  counter: `blocks.${props.rowId % 6}.${props.colId % 6}.counter`
 }), {
   blockPressed: 'blockPressed'
 },
-  function ColorBlocks (props) {
+  function Block (props) {
     return (
       <View style={styles.buttonContainer}>
-        <TouchableHighlight
-          underlayColor='#444'
-          onPress={() => {
-            props.blockPressed({
-              rowId: props.rowId,
-              colId: props.colId
-            })
-          }}
-          style={[styles.button, getColor(props.counter)]}>
-          <Text />
-        </TouchableHighlight>
+        <View style={[styles.button, getColor(props.counter)]} />
       </View>
     )
   }
