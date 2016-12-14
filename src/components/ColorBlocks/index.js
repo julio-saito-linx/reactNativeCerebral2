@@ -4,39 +4,48 @@ import {
 } from 'react-native'
 import styles from './styles'
 import BlockButton from './BlockButton'
+import {connect} from 'cerebral/react'
 
-function createRows ({rows, cols}) {
+function createRows (props) {
   let result = []
-  for (let rowId = 0; rowId < rows; rowId++) {
+  for (let rowId = 0; rowId < props.rows; rowId++) {
     result.push((
       <View
         key={rowId}
         style={styles.blocksContainer}
       >
-        {createColumns(rowId, cols)}
+        {createColumns(rowId, props)}
       </View>
     ))
   }
   return result
 }
 
-function createColumns (rowId, cols) {
+function createColumns (rowId, props) {
   let result = []
-  for (let colId = 0; colId < cols; colId++) {
+  for (let colId = 0; colId < props.cols; colId++) {
     result.push((
       <BlockButton
         key={colId}
         rowId={rowId}
         colId={colId}
-        counter={0}
+        counter={props.blocks[rowId][colId].counter}
+        blockPressed={props.blockPressed}
       />
     ))
   }
   return result
 }
 
-export default (props) => (
-  <View style={styles.blocksRowsContainer}>
-    {createRows(props)}
-  </View>
-)
+export default connect({
+  blocks: 'blocks'
+}, {
+  blockPressed: 'blockPressed'
+},
+  (props) => {
+    return (
+      <View style={styles.blocksRowsContainer}>
+        {createRows(props)}
+      </View>
+    )
+  })

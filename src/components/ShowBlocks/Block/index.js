@@ -2,7 +2,6 @@ import React from 'react'
 import {
   View
 } from 'react-native'
-import {connect} from 'cerebral/react'
 import styles from './styles'
 
 function getColor (counter) {
@@ -22,16 +21,8 @@ function getColor (counter) {
   }
 }
 
-export default connect((props) => ({
-  counter: `blocks.${props.rowId % 6}.${props.colId % 6}.counter`
-}), {
-  blockPressed: 'blockPressed'
-},
-  function Block (props) {
-    return (
-      <View style={styles.buttonContainer}>
-        <View style={[styles.button, getColor(props.counter)]} />
-      </View>
-    )
-  }
+export default (props) => (
+  <View style={styles.buttonContainer}>
+    <View style={[styles.button, getColor(props.counter)]} />
+  </View>
 )

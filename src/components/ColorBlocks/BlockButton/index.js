@@ -24,26 +24,20 @@ function getColor (counter) {
   }
 }
 
-export default connect((props) => ({
-  counter: `blocks.${props.rowId}.${props.colId}.counter`
-}), {
-  blockPressed: 'blockPressed'
-},
-  function ColorBlocks (props) {
-    return (
-      <View style={styles.buttonContainer}>
-        <TouchableHighlight
-          underlayColor='#444'
-          onPress={() => {
-            props.blockPressed({
-              rowId: props.rowId,
-              colId: props.colId
-            })
-          }}
-          style={[styles.button, getColor(props.counter)]}>
-          <Text />
-        </TouchableHighlight>
-      </View>
-    )
-  }
-)
+export default (props) => {
+  return (
+    <View style={styles.buttonContainer}>
+      <TouchableHighlight
+        underlayColor='#444'
+        onPress={() => {
+          props.blockPressed({
+            rowId: props.rowId,
+            colId: props.colId
+          })
+        }}
+        style={[styles.button, getColor(props.counter)]}>
+        <Text />
+      </TouchableHighlight>
+    </View>
+  )
+}
