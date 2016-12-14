@@ -10,7 +10,7 @@ export default StyleSheet.create({
     marginBottom: 10,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF'
+    backgroundColor: '#333'
   },
   buttons: {
     flexDirection: 'row',

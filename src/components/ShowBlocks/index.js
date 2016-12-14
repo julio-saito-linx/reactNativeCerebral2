@@ -35,7 +35,7 @@ function createColumns (rowId, props) {
 }
 
 export default connect({
-  blocks: 'blocks'
+  blocks: 'blocks.**'
 }, {},
   (props) => {
     return (
